@@ -15,7 +15,12 @@ def strip_html(html):
 	nonword_pattern = re.compile(r'(&.+?;)|\\|\.\s|\||\"|!|:|;|,|/', re.DOTALL)
 
 	# get the body
-	body = re.search(body_pattern, html).group(1);
+	body = re.search(body_pattern, html)
+  
+	# if body wasn't found, get out of here
+	if (body == None):
+		return []
+	body = body.group(1);
 
 	# get rid of html tags and other unwanted stuff
 	cleaned = re.sub(script_pattern, '', body)
