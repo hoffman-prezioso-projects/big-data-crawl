@@ -8,7 +8,7 @@ def strip_html(html):
 	body_pattern = re.compile('<body.*?>(.*?)</body>', re.DOTALL)
 	script_pattern = re.compile('(<script.*?</script>)|(<noscript*?</noscript>)', re.DOTALL)
 	html_pattern = re.compile('(<!--.*?-->)|(<.*?>)', re.DOTALL)
-	nonword_pattern = re.compile(r'(&.+?;)|\\|\.\s|\||\"|!|:|;|,|/', re.DOTALL)
+	nonword_pattern = re.compile(r'(\w+://)?\w+\.\S+|\S*@\S|(&.+?;)|[^a-zA-Z]|[0-9]', re.DOTALL)
 
 	# get the body
 	body = re.search(body_pattern, html)
