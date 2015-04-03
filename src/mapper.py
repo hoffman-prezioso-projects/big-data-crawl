@@ -21,4 +21,4 @@ for line in sys.stdin:
   
   # emit word and its frequecy
   for word in word_frequencies:
-		print '%s\t%s\t%s' % (word, url, word_frequencies[word])
+		print '%s\t%s\t%s' % (word.lower(), url, word_frequencies[word])
