@@ -4,14 +4,10 @@ import re
 
 def strip_html(html):
 	
-	# regex for html body; the contents will be extracted
+	# regex patterns
 	body_pattern = re.compile('<body.*?>(.*?)</body>', re.DOTALL)
-
-	# regex for javascript and html tags
 	script_pattern = re.compile('(<script.*?</script>)|(<noscript*?</noscript>)', re.DOTALL)
 	html_pattern = re.compile('(<!--.*?-->)|(<.*?>)', re.DOTALL)
-
-	# regex for various characters, etc. that I don't want to see
 	nonword_pattern = re.compile(r'(&.+?;)|\\|\.\s|\||\"|!|:|;|,|/', re.DOTALL)
 
 	# get the body
