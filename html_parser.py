@@ -3,7 +3,7 @@
 import re
 
 def strip_html(html):
-
+	
 	# regex for html body; the contents will be extracted
 	body_pattern = re.compile('<body.*?>(.*?)</body>', re.DOTALL)
 
@@ -24,6 +24,6 @@ def strip_html(html):
 
 	# get all the words from the cleaned text and display them
 	words = cleaned.split()
-	for word in words:
-		print word
+	
+	return words
 
