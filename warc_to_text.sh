@@ -17,6 +17,8 @@ DATA_FILE="data"
 
 if [ ! -d $DATA_FILE ]; then
 	mkdir $DATA_FILE
+else
+	rm -r $DATA_FILE/*
 fi
 
 echo "Converting warc records to text files"
