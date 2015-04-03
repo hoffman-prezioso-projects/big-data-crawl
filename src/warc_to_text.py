@@ -15,6 +15,12 @@ if not sys.argv[2]:
   print "please supply an output directory"
   sys.exit(2)
 
+if not sys.argv[3]:
+  max_records = 0
+else:
+  max_records = int(sys.argv[3])
+
+
 warcStream = warctools.WarcRecord.open_archive(sys.argv[1])
 outputDir = sys.argv[2]
 regex = re.compile(r'\W+')
@@ -48,6 +54,8 @@ for record in warcStream:
         # logging
         i = i + 1
         if i % 10 == 0:
-          print '%6s records processed' % (i) 
+          print '%6s records processed' % (i)
+        if max_records > 0 and i == max_records:
+          break
 
 print 'Plain Text Files Have Been Extracted'
