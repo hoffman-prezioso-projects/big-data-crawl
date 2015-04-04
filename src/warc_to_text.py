@@ -46,7 +46,7 @@ for record in warcStream:
           # if word is utf-8, write it to file
           try:
             utf8_word = word.decode('utf-8')
-            fileObject.write(utf8_word + ' ')
+            fileObject.write(utf8_word.lower() + ' ')
           except UnicodeDecodeError:
             pass
         fileObject.close()
