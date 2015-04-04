@@ -49,4 +49,5 @@ target/
 
 #project-specific stuff
 *.html
+*.db
 output/
