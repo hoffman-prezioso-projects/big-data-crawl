@@ -50,4 +50,5 @@ target/
 #project-specific stuff
 *.html
 *.db
+*.warc*
 output/
