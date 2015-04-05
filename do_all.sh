@@ -14,6 +14,6 @@ fi
 
 # run all the needed scripts
 ./warc_to_text.sh $1 $2
-./mapreduce.sh
+time ./mapreduce.sh
 ./load_db.sh output/part-00000
 
