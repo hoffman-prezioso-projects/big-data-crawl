@@ -7,19 +7,23 @@ import sys
 
 from html_parser import strip_html
 
-if not sys.argv[1]:
+if len(sys.argv) < 1:
   print "Please supply warc.gz file"
   sys.exit(1)
 
-if not sys.argv[2]:
+if len(sys.argv) < 2:
   print "please supply an output directory"
   sys.exit(2)
 
-if not sys.argv[3]:
+if len(sys.argv) < 3:
   max_records = 0
 else:
   max_records = int(sys.argv[3])
 
+if len(sys.argv) < 4:
+  records_per_file == 1000
+else:
+  records_per_file == int(sys.argv[4])
 
 warcStream = warctools.WarcRecord.open_archive(sys.argv[1])
 outputDir = sys.argv[2]
@@ -28,18 +32,15 @@ regex = re.compile(r'\W+')
 i = 0
 
 for record in warcStream:
+  if i % records_per_file == 0:
+    fileObject = codecs.open('data/' + str(i / records_per_file).zfill(6) + '.txt', 'w', 'utf-8')
   if record.type == "response":
     if record.content[1][0:50].find("HTTP/1.1 2") > -1:	#if a succesful response
       startIndex = record.content[1].find("<html")
       if startIndex > -1:	#if html found
 
-        # get filename
-        filename = re.sub('[<>]', '', record.id)
-        filename = re.sub(':', '-', filename)
-        fileName = outputDir + '/' + filename
-        
-        fileObject = codecs.open(fileName, "w", "utf-8")
         fileObject.write(record.url + ' ')
+        
         
         words = strip_html(record.content[1][startIndex:-1])
         for word in words:
@@ -49,13 +50,18 @@ for record in warcStream:
             fileObject.write(utf8_word.lower() + ' ')
           except UnicodeDecodeError:
             pass
-        fileObject.close()
         
+        fileObject.write('\n')
         # logging
         i = i + 1
-        if i % 10 == 0:
+        if i % 100 == 0:
           print '%6s records processed' % (i)
         if max_records > 0 and i == max_records:
           break
+  
+  if i % records_per_file == 0: 
+    fileObject.close()
 
 print 'Plain Text Files Have Been Extracted'
+
+  

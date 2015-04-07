@@ -9,6 +9,8 @@ fi
 DATABASE="search.db"
 TABLE="data"
 
+echo "Importing database..."
+
 sqlite3 $DATABASE <<EOS
 
 DROP TABLE IF EXISTS $TABLE;
