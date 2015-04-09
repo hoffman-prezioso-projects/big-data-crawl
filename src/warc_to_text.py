@@ -21,9 +21,9 @@ else:
   max_records = int(sys.argv[3])
 
 if len(sys.argv) < 4:
-  records_per_file == 1000
+  records_per_file = 1000
 else:
-  records_per_file == int(sys.argv[4])
+  records_per_file = int(sys.argv[4])
 
 warcStream = warctools.WarcRecord.open_archive(sys.argv[1])
 outputDir = sys.argv[2]
@@ -63,5 +63,3 @@ for record in warcStream:
     fileObject.close()
 
 print 'Plain Text Files Have Been Extracted'
-
-  
