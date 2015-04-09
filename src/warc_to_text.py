@@ -7,20 +7,20 @@ import sys
 
 from html_parser import strip_html
 
-if len(sys.argv) < 1:
+if len(sys.argv) < 2:
   print "Please supply warc.gz file"
   sys.exit(1)
 
-if len(sys.argv) < 2:
+if len(sys.argv) < 3:
   print "please supply an output directory"
   sys.exit(2)
 
-if len(sys.argv) < 3:
+if len(sys.argv) < 4:
   max_records = 0
 else:
   max_records = int(sys.argv[3])
 
-if len(sys.argv) < 4:
+if len(sys.argv) < 5:
   records_per_file = 1000
 else:
   records_per_file = int(sys.argv[4])
