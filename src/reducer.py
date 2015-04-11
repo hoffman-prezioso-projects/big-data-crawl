@@ -2,29 +2,24 @@
 
 import sys
 
-def emit(word, url, count):
-    print '%s\t%s\t%s' % (word, url, count)
+def emit(word, url, frequency):
+    print '%s\t%s\t%s' % (word, url, frequency)
 
-current_word = None
-current_url = None
-count = 0
+last_word = None
+last_url = None
+last_frequency = 0
 
 for line in sys.stdin:
-    word, url, frequency = line.strip().split('\t', 2)
-    frequency = int(frequency)
+    current_word, current_url, current_frequency = line.strip().split('\t', 2)
+    current_frequency = int(current_frequency)
 
-    if word != current_word or url != current_url:
-        if current_word:
-            emit(current_word, current_url, count)
-        count = 0
+    if current_word == last_word and current_url == last_url:
+        last_frequency += current_frequency
+    else:
+        emit(last_word, last_url, last_frequency)
+        last_word = current_word
+        last_url = current_url
+        last_frequency = current_frequency
 
-        if word != current_word:
-            current_word = word
-
-        if url != current_url:
-            current_url = url
-
-    count += 1
-
-# print the last word/url/count
-emit(current_word, current_url, count)
+# print the last word/url/frequency
+emit(last_word, last_url, frequency)
