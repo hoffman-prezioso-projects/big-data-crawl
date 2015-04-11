@@ -21,7 +21,7 @@ else:
     max_records = int(sys.argv[3])
 
 if len(sys.argv) < 5:
-    records_per_file = 1000
+    records_per_file = 10000
 else:
     records_per_file = int(sys.argv[4])
 
