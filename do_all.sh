@@ -13,7 +13,6 @@ else
 fi
 
 # run all the needed scripts
-./warc_to_text.sh $1 $2
+time ./warc_to_text.sh $1 $2
 time ./mapreduce.sh
-./load_db.sh output/part-00000
-
+time ./load_db.sh output/part-00000

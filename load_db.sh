@@ -21,3 +21,5 @@ CREATE TABLE $TABLE (word TEXT, url TEXT, frequency INTEGER);
 .import $1 $TABLE
 
 EOS
+
+echo "Import finished!"

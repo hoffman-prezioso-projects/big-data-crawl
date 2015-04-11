@@ -54,7 +54,7 @@ for record in warc_stream:
                 current_file.write('\n')
                 # logging
                 file_name_counter = file_name_counter + 1
-                if file_name_counter % 100 == 0:
+                if file_name_counter % 500 == 0:
                     print '%6s records processed' % (file_name_counter)
                 if max_records > 0 and file_name_counter == max_records:
                     break

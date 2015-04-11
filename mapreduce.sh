@@ -12,6 +12,7 @@ hadoop fs -rm -r crawl/$OUTPUT_DIR > /dev/null 2>&1
 
 echo "Copying data..."
 hadoop dfs -copyFromLocal data crawl > /dev/null 2>&1
+echo "Copy complete!"
 
 echo "Running mapReduce..."
 hadoop jar /usr/lib/hadoop-0.20-mapreduce/contrib/streaming/hadoop-streaming.jar \
@@ -21,6 +22,7 @@ hadoop jar /usr/lib/hadoop-0.20-mapreduce/contrib/streaming/hadoop-streaming.jar
 -reducer src/reducer.py \
 -input crawl/data/* \
 -output crawl/$OUTPUT_DIR
+echo "mapReduce complete!"
 
 # create local output directory
 if [ ! -d $OUTPUT_DIR ]; then
