@@ -15,7 +15,7 @@ fi
 if [ $# -lt 3 ]; then
 	RECORDS_PER_FILE=$3
 else
-	RECORDS_PER_FILE=1000
+	RECORDS_PER_FILE=10000
 fi
 
 echo "Creating data directory"
