@@ -16,7 +16,7 @@ for line in sys.stdin:
     if word != current_word or url != current_url:
         if current_word:
             emit(current_word, current_url, count)
-            count = 0
+        count = 0
 
         if word != current_word:
             current_word = word
