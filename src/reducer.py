@@ -21,5 +21,8 @@ for line in sys.stdin:
         last_url = current_url
         last_frequency = current_frequency
 
-# print the last word/url/frequency
-emit(last_word, last_url, last_frequency)
+# print the last word/url/frequency if needed
+try:
+    emit(last_word, last_url, last_frequency)
+except:
+    pass
