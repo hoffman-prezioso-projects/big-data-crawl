@@ -22,4 +22,4 @@ for line in sys.stdin:
         last_frequency = current_frequency
 
 # print the last word/url/frequency
-emit(last_word, last_url, frequency)
+emit(last_word, last_url, last_frequency)
