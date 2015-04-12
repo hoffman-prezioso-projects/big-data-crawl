@@ -39,14 +39,17 @@ for record in warc_stream:
     if record.type == "response":
 
         # if not a robots.txt page
-        if record.url.rfind('robots.txt') == -1:
+        if record.url[-10:] != 'robots.txt':
             # find start of <body>
             startIndex = record.content[1][5:].find("<body")
 
             # if body found
             if startIndex > -1:
                 # add url to beginning of line
-                current_file.write(record.url + ' ')
+                record_url = record.url
+                if record_url.endswith("/"):
+                    record_url = record_url[:-1]
+                current_file.write(record_url + ' ')
 
                 # strip out html
                 words = strip_html(record.content[1][startIndex:-1])
