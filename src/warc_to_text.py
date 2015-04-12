@@ -46,10 +46,7 @@ for record in warc_stream:
             # if body found
             if startIndex > -1:
                 # add url to beginning of line
-                record_url = record.url
-                if record_url.endswith("/"):
-                    record_url = record_url[:-1]
-                current_file.write(record_url + ' ')
+                current_file.write(record.url + ' ')
 
                 # strip out html
                 words = strip_html(record.content[1][startIndex:-1])

@@ -39,7 +39,7 @@ def print_search_results(search_results):
     if number_of_found_rows == 0:
         print "*** NO RESULTS FOUND ***"
     else:
-        print "***** Search matched ", str(number_of_found_rows) \
+        print "***** Search matched ", str(number_of_found_rows), \
             " results *****"
 
         print "  %-20s %-10s %s" % ("Word", "Frequency", "URL")
