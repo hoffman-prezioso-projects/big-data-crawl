@@ -1,6 +1,6 @@
 import sqlite3
 
-database_path = "../search.db"
+database_path = "./search.db"
 
 try:
 	connection = sqlite3.connect(database_path)

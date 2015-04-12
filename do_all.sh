@@ -13,6 +13,7 @@ else
 fi
 
 # run all the needed scripts
-time ./warc_to_text.sh $1 $2
+./warc_to_text.sh $1 $2
 time ./mapreduce.sh
-time ./load_db.sh output/part-00000
+./load_db.sh output/part-00000
+python ./src/database_search_engine.py
