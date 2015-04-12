@@ -20,16 +20,17 @@ def search(search_attribute, search_term):
 	search_condition_string = search_attribute + " = ?"
 	if search_attribute == "url":
 		search_condition_string = search_attribute + " LIKE ?"
-	search_results = connection.execute("SELECT * FROM data WHERE " + search_condition_string + " ORDER BY frequency DESC LIMIT 100", (search_term,))
+	search_results = connection.execute("SELECT * FROM data WHERE " + search_condition_string + " ORDER BY frequency DESC", (search_term,))
 	return search_results
 
 def print_search_results(search_results):
 	print "\n========================= SEARCH ========================="
 	search_results = search_results.fetchall()
-
-	if len(search_results) == 0:
+	number_of_found_rows = len(search_results)
+	if number_of_found_rows == 0:
 		print "*** NO RESULTS FOUND ***"
 	else:
+		print "***** Search matched ",  str(number_of_found_rows), " results *****"
 		print "  %-20s %-10s %s" % ("Word", "Frequency", "URL")
 
 		row_counter = 0
