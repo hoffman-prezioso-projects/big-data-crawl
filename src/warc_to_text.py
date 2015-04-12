@@ -33,15 +33,18 @@ file_name_counter = 0
 
 for record in warc_stream:
     if file_name_counter % records_per_file == 0:
-        current_file = codecs.open('data/' + str(file_name_counter / records_per_file).zfill(6) + '.txt', 'w', 'utf-8')
+        current_file = codecs.open(
+            'data/' + str(file_name_counter / records_per_file).zfill(6) +
+            '.txt', 'w', 'utf-8')
+
     if record.type == "response":
-        if record.content[1][0:50].find("HTTP/1.1 2") > -1: #if a succesful response
+        if record.content[1][0:50].find("HTTP/1.1 2") > -1:  # success
             startIndex = record.content[1].find("<html")
-            if startIndex > -1: #if html found
+
+            if startIndex > -1:  # if html found
 
                 current_file.write(record.url + ' ')
-                
-                
+
                 words = strip_html(record.content[1][startIndex:-1])
                 for word in words:
                     # if word is utf-8, write it to file
@@ -50,7 +53,7 @@ for record in warc_stream:
                         current_file.write(utf8_word.lower() + ' ')
                     except UnicodeDecodeError:
                         pass
-                
+
                 current_file.write('\n')
                 # logging
                 file_name_counter = file_name_counter + 1
@@ -58,8 +61,8 @@ for record in warc_stream:
                     print '%6s records processed' % (file_name_counter)
                 if max_records > 0 and file_name_counter == max_records:
                     break
-    
-    if file_name_counter % records_per_file == 0: 
+
+    if file_name_counter % records_per_file == 0:
         current_file.close()
 
 print 'Plain Text Files Have Been Extracted'

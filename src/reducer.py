@@ -2,6 +2,7 @@
 
 import sys
 
+
 def emit(word, url, frequency):
     print '%s\t%s\t%s' % (word, url, frequency)
 
