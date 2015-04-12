@@ -76,4 +76,4 @@ for record in warc_stream:
 print 'Plain Text Files Have Been Extracted'
 
 minutes, seconds = divmod(time() - start_time, 60)
-print "Total Time: %d minutes %d seconds" % (minutes, seconds)
+print "Time for WARC Conversion: %d minutes %d seconds" % (minutes, seconds)
