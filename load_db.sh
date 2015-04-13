@@ -20,6 +20,8 @@ CREATE TABLE $TABLE (word TEXT, url TEXT, frequency INTEGER);
 .separator "\t"
 .import $1 $TABLE
 
+CREATE INDEX word_index ON $TABLE(word);
+
 EOS
 
 echo "Import finished!"
